@@ -12,5 +12,8 @@
     "dialogflow"
   ],
   "author": "Reginaldo Santos (reginaldosantos.br@gmail.com)",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
