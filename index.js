@@ -22,8 +22,20 @@ app.get('/mensagem/:tipo/:id', (req, res) => {
 })
 
 app.post('/pedido', (req, res) => {
-  console.log(req.body);
-  res.send("pedido recebida");
+  console.log(req);
+  const produto = req.body.produto;
+  const qtd = req.body.quantidade;
+  const pagto = req.body.tipoPagamento;
+  const bebida = req.body.bebida;
+
+  const pedido = {
+    produto,
+    qtd,
+    pagto,
+    bebida
+  }
+
+  res.json(pedido);
 })
 
 
