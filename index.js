@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.get('/', (req, res) => {
-  res.send("Olá Chatbot");
+  res.send("Olá Cópia do projeto");
 })
 
 app.get('/pergunta', (req, res) => {
