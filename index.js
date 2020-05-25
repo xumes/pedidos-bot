@@ -38,7 +38,9 @@ app.post('/pedido', (req, res) => {
   res.json(pedido);
 })
 
+const porta = process.env.PORT || 3000;
+const hostname = "127.0.0.1"
 
-app.listen(3000, '127.0.0.1', () => {
-  console.log('Servidor rodando');
+app.listen(porta, hostname, () => {
+  console.log(`servidor rodando em http://${hostname}:${porta}`);
 })
