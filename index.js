@@ -38,37 +38,6 @@ app.post('/pedido', (req, res) => {
   res.json(pedido);
 })
 
-app.post("/webhook", (req,res) => {
-  console.log("received a post request");
-  console.log("pergunta", req.body)
-  console.log("queryResult", req.body.queryResult)
-  console.log("queryText", req.body.queryResult.queryText)
-
-  console.log("intencao", req.body.queryResult.intent.name)
-
-  const resposta = {
-    "fulfillmentText": " ",
-    "fulfillmentMessages": [
-      {
-        "card": {
-          "title": "card title",
-          "subtitle": "card text",
-          "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-          "buttons": [
-            {
-              "text": "button text",
-              "postback": "https://assistant.google.com/"
-            }
-          ]
-        }
-      }
-    ],
-    "source": ""
-  }
-
-  return res.json(resposta)
-})
-
 const porta = process.env.PORT || 3000;
 const hostname = "127.0.0.1"
 
