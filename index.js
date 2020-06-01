@@ -38,6 +38,19 @@ app.post('/pedido', (req, res) => {
   res.json(pedido);
 })
 
+app.post("/webhook", (req,res) => {
+  console.log("received a post request");
+  console.log(req.body)
+
+  const resposta = {
+    "fulfillmentText": " ",
+    "fulfillmentMessages": [{"text": {"text": "Olá direto do meu webhook"}}],
+    "source": ""
+  }
+
+  return res.json(resposta)
+})
+
 const porta = process.env.PORT || 3000;
 const hostname = "127.0.0.1"
 
