@@ -45,7 +45,6 @@ app.post("/webhook", (req,res) => {
   console.log("body", req.body.intent.displayName)
   console.log("body", req.body.queryResult.queryText)
 
-
   const resposta = {
     "fulfillmentText": " ",
     "fulfillmentMessages": [{"text": {"text": "Olá direto do meu webhook"}}],
