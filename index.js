@@ -40,18 +40,29 @@ app.post('/pedido', (req, res) => {
 
 app.post("/webhook", (req,res) => {
   console.log("received a post request");
+  console.log("pergunta", req.body)
+  console.log("queryResult", req.body.queryResult)
+  console.log("queryText", req.body.queryResult.queryText)
 
-  var pergunta =
-  req.body.queryResult &&
-  req.body.queryResult.parameters &&
-  req.body.queryResult.parameters.echoText
-    ? req.body.queryResult.parameters.echoText
-    : "Seems like some problem. Speak again.";
-console.log(pergunta)
+  console.log("intencao", req.body.queryResult.intent.name)
 
   const resposta = {
     "fulfillmentText": " ",
-    "fulfillmentMessages": [{"text": {"text": "Olá direto do meu webhook"}}],
+    "fulfillmentMessages": [
+      {
+        "card": {
+          "title": "card title",
+          "subtitle": "card text",
+          "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+          "buttons": [
+            {
+              "text": "button text",
+              "postback": "https://assistant.google.com/"
+            }
+          ]
+        }
+      }
+    ],
     "source": ""
   }
 
