@@ -33,7 +33,6 @@ app.post('/webhook', (req, res) => {
     responder = "a sua intenção era " + intencao
   }
 
-  
 
   console.log("mensagem original: ", mensagem);
   console.log("intenção", intencao);
