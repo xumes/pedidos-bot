@@ -40,9 +40,9 @@ app.post('/pedido', (req, res) => {
 
 app.post("/webhook", (req,res) => {
   console.log("received a post request");
-  console.log("body", req.body)
-  console.log("queryResult", req.queryResult)
-  console.log("intent", req.intent)
+
+  console.log("request inteiro", req)
+
 
   const resposta = {
     "fulfillmentText": " ",
