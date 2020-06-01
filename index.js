@@ -48,6 +48,7 @@ app.post("/webhook", (req,res) => {
     ? req.body.queryResult.parameters.echoText
     : "Seems like some problem. Speak again.";
 
+
   const resposta = {
     "fulfillmentText": " ",
     "fulfillmentMessages": [{"text": {"text": "Olá direto do meu webhook"}}],
