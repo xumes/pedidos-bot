@@ -46,7 +46,6 @@ app.post("/webhook", (req,res) => {
 
   console.log("intencao", req.body.queryResult.intent.name)
 
-
   const resposta = {
     "fulfillmentText": " ",
     "fulfillmentMessages": [
