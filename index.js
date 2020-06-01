@@ -41,15 +41,13 @@ app.post('/pedido', (req, res) => {
 app.post("/webhook", (req,res) => {
   console.log("received a post request");
 
-  var resposta =
+  var pergunta =
   req.body.queryResult &&
   req.body.queryResult.parameters &&
   req.body.queryResult.parameters.echoText
     ? req.body.queryResult.parameters.echoText
     : "Seems like some problem. Speak again.";
-    
-    console.log(resposta)
-
+console.log(pergunta)
 
   const resposta = {
     "fulfillmentText": " ",
