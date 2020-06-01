@@ -30,9 +30,11 @@ app.post('/webhook', (req, res) => {
     "fulfillmentText": "Resposta do Webhook",
     "fulfillmentMessages": [
       {
-        "text": [
-          "Eu sou um webhook, o que achou?"
-        ],
+        "text": {
+          "text": [
+            "Eu sou um webhook, o que achou?"
+          ]
+        }
       }
     ],
     "source": "",
