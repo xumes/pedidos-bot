@@ -5,11 +5,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({
   extended: false
-})); <<
-<< << < HEAD
-app.use(bodyParser.json()) ===
-  === = >>>
-  >>> > cc573d8a1a81ef5e55cf342446d1f43e17afbc9a
+}));
 
 app.use(bodyParser.json());
 
@@ -62,12 +58,6 @@ const hostname = "127.0.0.1"
 app.listen(porta, () => {
   console.log(`servidor rodando em http://${hostname}:${porta}`);
 })
-
-
-
-
-
-
 
 
 
