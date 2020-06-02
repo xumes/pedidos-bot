@@ -23,6 +23,7 @@ app.post('/webhook', (req, res) => {
     console.log("responder", responder)
   }
 
+
   if (intencao == 'verCardapio') {
     responder = responder + "Nosso cardápio ainda está em elaboração, mas nós vendemos Pizza e Refrigerante";
   }
@@ -32,7 +33,6 @@ app.post('/webhook', (req, res) => {
   else {
     responder = "a sua intenção era " + intencao
   }
-
 
   console.log("mensagem original: ", mensagem);
   console.log("intenção", intencao);
