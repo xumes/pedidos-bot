@@ -1,9 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const app = express( );
+const app = express();
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(bodyParser.json())
 
 
@@ -26,32 +28,26 @@ app.post('/webhook', (req, res) => {
 
   if (intencao == 'verCardapio') {
     responder = responder + "Nosso cardápio ainda está em elaboração, mas nós vendemos Pizza e Refrigerante";
-  }
-  else if (intencao == 'verStatus') {
+  } else if (intencao == 'verStatus') {
     reponder = 'Seu pedido ainda está sendo preparado, por favor aguarde mais um instante';
-  }
-  else {
+  } else {
     responder = "a sua intenção era " + intencao
   }
-  
 
   console.log("mensagem original: ", mensagem);
   console.log("intenção", intencao);
 
   const resposta = {
     "fulfillmentText": "Resposta do Webhook",
-    "fulfillmentMessages": [
-      {
-        "text": {
-          "text": [
-            responder
-          ]
-        }
+    "fulfillmentMessages": [{
+      "text": {
+        "text": [
+          responder
+        ]
       }
-    ],
+    }],
     "source": "",
   }
-
 
   res.send(resposta);
 })
