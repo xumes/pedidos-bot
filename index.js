@@ -4,40 +4,17 @@ const bodyParser = require("body-parser");
 const app = express();
 
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: false
 }));
 
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.send("Olá Galera");
+  res.send("Olá Chatbot");
 })
 
-app.get('/pergunta', (req, res) => {
-  msg = req.query.pergunta;
-  res.send("você perguntou: " + msg);
-})
-
-app.get('/mensagem/:tipo/:id', (req, res) => {
-  msg = req.params.tipo;
-  cod = req.params.id;
-  res.send("você quer editar o id #" + cod);
-})
-
-app.post('/pedido', (req, res) => {
-  console.log(req);
-  const produto = req.body.produto;
-  const qtd = req.body.quantidade;
-  const pagto = req.body.tipoPagamento;
-  const bebida = req.body.bebida;
-
-  const pedido = {
-    produto,
-    qtd,
-    pagto,
-    bebida
-  }
-
-  res.json(pedido);
+app.post('/webhook', (req, res) => {
+  console.log("Cheguei no webhook");
 })
 
 const porta = process.env.PORT || 3000;
