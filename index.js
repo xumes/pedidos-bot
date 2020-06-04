@@ -35,7 +35,7 @@ if ( resposta.tipo == 'texto') {
       {
         "text": {
           "text": [
-            resp.mensagem
+            resposta.mensagem
           ]
         }
       }
