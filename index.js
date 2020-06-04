@@ -21,15 +21,15 @@ app.post('/webhook', (req, res) => {
 
   switch(intencao) {
     case 'VerCardapio': 
-      resp = Model.verCardapio( mensagem, parametros );
+      resposta = Model.verCardapio( mensagem, parametros );
       break;
     default: 
-      resp = {tipo: 'texto', mensagem: 'Sinto muito, não entendi o que você quer'}
+      resposta = {tipo: 'texto', mensagem: 'Sinto muito, não entendi o que você quer'}
   }
 
 
-if ( resp.tipo == 'texto') {
-  const resposta = {
+if ( resposta.tipo == 'texto') {
+  responder = {
     "fulfillmentText": "Resposta do Webhook",
     "fulfillmentMessages": [
       {
@@ -44,7 +44,7 @@ if ( resp.tipo == 'texto') {
   }
 }
 
-  res.send(resposta);
+  res.send(responder);
 })
 
 const porta = process.env.PORT || 3000;
