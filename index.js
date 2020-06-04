@@ -49,10 +49,15 @@ if ( resposta.tipo == 'texto') {
   }
 } else if ( resposta.tipo == 'imagem' ) {
   responder = {
-    "platform": "ACTIONS_ON_GOOGLE",
-    "image": {
-      "imageUri": resposta.url,
-    }
+    "fulfillmentText": "Resposta do Webhook",
+    "fulfillmentMessages": [
+      {
+        "image": {
+          "imageUri": resposta.url,
+        }
+      }
+    ],
+    "source": "",
   }
 }
 
