@@ -31,8 +31,6 @@ app.post('/webhook', (req, res) => {
   }
 
 
-
-
 if ( resposta.tipo == 'texto') {
   responder = {
     "fulfillmentText": "Resposta do Webhook",
