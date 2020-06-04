@@ -24,7 +24,7 @@ app.post('/webhook', (req, res) => {
   }
 
 
-  if (intencao == 'verCardapio') {
+  if (intencao == 'VerCardapio') {
     responder = responder + "Nosso cardápio ainda está em elaboração, mas nós vendemos Pizza e Refrigerante";
   }
   else if (intencao == 'verStatus') {
@@ -35,7 +35,8 @@ app.post('/webhook', (req, res) => {
   }
 
   console.log("mensagem original: ", mensagem);
-  console.log("intenção", intencao);
+  console.log(`intenção '${intencao}'`);
+  console.log(intencao == 'VerCardapio');
 
   const resposta = {
     "fulfillmentText": "Resposta do Webhook",
