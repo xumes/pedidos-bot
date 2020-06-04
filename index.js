@@ -16,13 +16,8 @@ app.get('/', (req, res) => {
 app.post('/webhook', (req, res) => {
   const mensagem = req.body.queryResult.queryText;
   const intencao = req.body.queryResult.intent.displayName;
-  let parameters = null;
+  const parametros = req.body.queryResult.parameters;
   let responder = ""
-
-  // if (req.body.queryResult.parameters && req.body.queryResult.parameters.nao_vendemos) {
-  //   responder = "Puxa, nós não vendemos " + req.body.queryResult.parameters.nao_vendemos + ". "
-  //   console.log("responder", responder)
-  // }
 
   switch(intencao) {
     case 'VerCardapio': 
