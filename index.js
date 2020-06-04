@@ -23,6 +23,9 @@ app.post('/webhook', (req, res) => {
     case 'VerCardapio': 
       resposta = Model.verCardapio( mensagem, parametros );
       break;
+    case 'verStatus':
+      resposta = Model.verStatus( mensagem, parametros );
+      break;
     default: 
       resposta = {tipo: 'texto', mensagem: 'Sinto muito, não entendi o que você quer'}
   }
@@ -41,6 +44,13 @@ if ( resposta.tipo == 'texto') {
       }
     ],
     "source": "",
+  }
+} else if ( resposta.tipo == 'imagem' ) {
+  responder = {
+    "platform": "ACTIONS_ON_GOOGLE",
+    "image": {
+      "imageUri": resposta.url,
+    }
   }
 }
 
