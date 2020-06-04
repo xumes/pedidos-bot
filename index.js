@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
+const Model = require("../model");
+
 const app = express( );
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -12,46 +14,40 @@ app.get('/', (req, res) => {
 })
 
 app.post('/webhook', (req, res) => {
-  console.log("Cheguei no webhook");
-
   const mensagem = req.body.queryResult.queryText;
   const intencao = req.body.queryResult.intent.displayName;
+  let parameters = null;
   let responder = ""
 
-  if (req.body.queryResult.parameters && req.body.queryResult.parameters.nao_vendemos) {
-    responder = "Puxa, nós não vendemos " + req.body.queryResult.parameters.nao_vendemos + ". "
-    console.log("responder", responder)
+  // if (req.body.queryResult.parameters && req.body.queryResult.parameters.nao_vendemos) {
+  //   responder = "Puxa, nós não vendemos " + req.body.queryResult.parameters.nao_vendemos + ". "
+  //   console.log("responder", responder)
+  // }
+
+  switch(intencao) {
+    case 'VerCardapio': 
+      resp = Model.verCardapio( mensagem, parametros );
+      break;
+    default: 
+      resp = {tipo: 'texto', mensagem: 'Sinto muito, não entendi o que você quer'}
   }
 
 
-  if (intencao == 'VerCardapio') {
-    responder = responder + "Nosso cardápio ainda está em elaboração, mas nós vendemos Pizza e Refrigerante";
-  }
-  else if (intencao == 'verStatus') {
-    reponder = 'Seu pedido ainda está sendo preparado, por favor aguarde mais um instante';
-  }
-  else {
-    responder = "a sua intenção era " + intencao
-  }
-
-  console.log("mensagem original: ", mensagem);
-  console.log(`intenção '${intencao}'`);
-  console.log(intencao == 'VerCardapio');
-
+if ( resp.tipo == 'texto') {
   const resposta = {
     "fulfillmentText": "Resposta do Webhook",
     "fulfillmentMessages": [
       {
         "text": {
           "text": [
-            responder
+            resp.mensagem
           ]
         }
       }
     ],
     "source": "",
   }
-
+}
 
   res.send(resposta);
 })
