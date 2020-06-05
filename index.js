@@ -3,9 +3,11 @@ const bodyParser = require("body-parser");
 
 const Model = require("./model");
 
-const app = express( );
+const app = express();
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(bodyParser.json())
 
 
@@ -19,45 +21,44 @@ app.post('/webhook', (req, res) => {
   const parametros = req.body.queryResult.parameters;
   let responder = ""
 
-  switch(intencao) {
-    case 'VerCardapio': 
-      resposta = Model.verCardapio( mensagem, parametros );
+  switch (intencao) {
+    case 'VerCardapio':
+      resposta = Model.verCardapio(mensagem, parametros);
       break;
     case 'verStatus':
-      resposta = Model.verStatus( mensagem, parametros );
+      resposta = Model.verStatus(mensagem, parametros);
       break;
-    default: 
-      resposta = {tipo: 'texto', mensagem: 'Sinto muito, não entendi o que você quer'}
+    default:
+      resposta = {
+        tipo: 'texto',
+        mensagem: 'Sinto muito, não entendi o que você quer'
+      }
   }
 
 
-if ( resposta.tipo == 'texto') {
-  responder = {
-    "fulfillmentText": "Resposta do Webhook",
-    "fulfillmentMessages": [
-      {
+  if (resposta.tipo == 'texto') {
+    responder = {
+      "fulfillmentText": "Resposta do Webhook",
+      "fulfillmentMessages": [{
         "text": {
           "text": [
             resposta.mensagem
           ]
         }
-      }
-    ],
-    "source": "",
-  }
-} else if ( resposta.tipo == 'imagem' ) {
-  responder = {
-    "fulfillmentText": "Resposta do Webhook",
-    "fulfillmentMessages": [
-      {
+      }],
+      "source": "",
+    }
+  } else if (resposta.tipo == 'imagem') {
+    responder = {
+      "fulfillmentText": "Resposta do Webhook",
+      "fulfillmentMessages": [{
         "image": {
           "imageUri": resposta.url,
         }
-      }
-    ],
-    "source": "",
+      }],
+      "source": "",
+    }
   }
-}
 
   res.send(responder);
 })
@@ -68,14 +69,6 @@ const hostname = "127.0.0.1"
 app.listen(porta, () => {
   console.log(`servidor rodando em http://${hostname}:${porta}`);
 })
-
-
-
-
-
-
-
-
 
 
 

@@ -1,4 +1,4 @@
-exports.verCardapio = ( msg, params ) => {
+exports.verCardapio = (msg, params) => {
 	let resposta = {
 		tipo: 'imagem',
 		url: 'http://lorempixel.com/output/food-q-c-640-480-10.jpg'
@@ -6,8 +6,6 @@ exports.verCardapio = ( msg, params ) => {
 
 	return resposta
 }
-
-// 
 
 exports.verStatus = () => {
 	let resposta = {
@@ -17,4 +15,3 @@ exports.verStatus = () => {
 
 	return resposta
 }
-
