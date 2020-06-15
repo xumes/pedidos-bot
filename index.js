@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
   res.send("Olá Chatbot");
 })
 
-app.post('/webhook', (req, res) => {
+app.post('/webhook', async (req, res) => {
   const mensagem = req.body.queryResult.queryText;
   const intencao = req.body.queryResult.intent.displayName;
   const parametros = req.body.queryResult.parameters;
@@ -21,13 +21,28 @@ app.post('/webhook', (req, res) => {
 
   switch(intencao) {
     case 'VerCardapio': 
-      resposta = Model.verCardapio( mensagem, parametros );
+      resposta = await Model.verCardapio( mensagem, parametros );
       break;
     case 'verStatus':
       resposta = Model.verStatus( mensagem, parametros );
       break;
     default: 
       resposta = {tipo: 'texto', mensagem: 'Sinto muito, não entendi o que você quer'}
+  }
+
+
+  let meuCardapio = [];
+  let menuItem = {};
+
+  for (let i=0; i<resposta.cardapio.length; i++) {
+    menuItem = {
+        "card": {
+          "title": resposta.cardapio[i].titulo,
+          "subtitle": resposta.cardapio[i].preco,
+          "imageUri": resposta.cardapio[i].url,
+        }
+    }
+    meuCardapio.push(menuItem)
   }
 
 
@@ -57,12 +72,20 @@ if ( resposta.tipo == 'texto') {
     ],
     "source": "",
   }
+} else if ( resposta.tipo == 'card' ) {
+  responder = {
+    "fulfillmentText": "Resposta do Webhook",
+    "fulfillmentMessages":  meuCardapio,
+    "source": "",
+  }
 }
+
+console.log("resposta final", responder)
 
   res.send(responder);
 })
 
-const porta = process.env.PORT || 3000;
+const porta = process.env.PORT || 8080;
 const hostname = "127.0.0.1"
 
 app.listen(porta, () => {
