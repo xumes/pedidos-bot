@@ -31,19 +31,7 @@ app.post('/webhook', async (req, res) => {
   }
 
 
-  let meuCardapio = [];
-  let menuItem = {};
 
-  for (let i=0; i<resposta.cardapio.length; i++) {
-    menuItem = {
-        "card": {
-          "title": resposta.cardapio[i].titulo,
-          "subtitle": resposta.cardapio[i].preco,
-          "imageUri": resposta.cardapio[i].url,
-        }
-    }
-    meuCardapio.push(menuItem)
-  }
 
 
 if ( resposta.tipo == 'texto') {
@@ -73,15 +61,26 @@ if ( resposta.tipo == 'texto') {
     "source": "",
   }
 } else if ( resposta.tipo == 'card' ) {
+  let meuCardapio = [];
+  let menuItem = {};
+
+  for (let i=0; i<resposta.cardapio.length; i++) {
+    menuItem = {
+        "card": {
+          "title": resposta.cardapio[i].titulo,
+          "subtitle": resposta.cardapio[i].preco,
+          "imageUri": resposta.cardapio[i].url,
+        }
+    }
+    meuCardapio.push(menuItem)
+  }
+
   responder = {
     "fulfillmentText": "Resposta do Webhook",
     "fulfillmentMessages":  meuCardapio,
     "source": "",
   }
 }
-
-console.log("resposta final", responder)
-
   res.send(responder);
 })
 
