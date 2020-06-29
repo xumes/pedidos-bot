@@ -10,7 +10,7 @@ app.use(bodyParser.json())
 
 
 app.get('/', (req, res) => {
-  res.send("Olá Chatbot");
+  res.send("Olá Cópia do projeto");
 })
 
 app.post('/webhook', async (req, res) => {
